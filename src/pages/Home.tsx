@@ -40,7 +40,7 @@ const Home = () => {
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
-        <div className="max-w-lg mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-lg mx-auto px-6 py-2 flex items-center justify-between">
           <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <Menu className="w-6 h-6" />
           </Button>
