@@ -108,11 +108,8 @@ const SendRequest = () => {
       </header>
 
       <main className="max-w-lg mx-auto px-4 sm:px-6 py-8 overflow-hidden">
-        {/* Icon and Title */}
-        <div className="flex items-center gap-3 sm:gap-4 mb-10">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-secondary flex items-center justify-center shadow-soft flex-shrink-0">
-            <DollarSign className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
-          </div>
+        {/* Title */}
+        <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold">Enter Amount</h2>
         </div>
 
