@@ -48,9 +48,9 @@ const Home = () => {
           </div>
           <div className="flex items-center justify-center">
             {processedLogo ? (
-              <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
+              <img src={processedLogo} alt="UrPaid" className="h-20 w-auto object-contain" />
             ) : (
-              <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
+              <div className="h-20 w-40 animate-pulse bg-white/20 rounded" />
             )}
           </div>
           <div className="flex justify-end gap-2">
