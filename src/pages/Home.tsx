@@ -1,102 +1,203 @@
-import { useState } from "react";
-import { Menu, User, DollarSign, Search } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, QrCode, User, DollarSign, Shield, Mail, Phone } from "lucide-react";
+import urpaidLogo from "@/assets/urpaid-logo.jpeg";
+import { processLogoBackground } from "@/utils/processLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ContactItem } from "@/components/ContactItem";
 import { BottomNav } from "@/components/BottomNav";
 import { useNavigate } from "react-router-dom";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+
+const contacts = [
+  { name: "Coline Loup", fallback: "CL", avatar: "" },
+  { name: "RUDA", fallback: "R", avatar: "" },
+  { name: "Sofia Kolomiets", fallback: "SK", avatar: "" },
+  { name: "Robert Andre", fallback: "RA", avatar: "" },
+];
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showPasskey, setShowPasskey] = useState(false);
+  const [processedLogo, setProcessedLogo] = useState<string>("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const processLogo = async () => {
+      try {
+        const processed = await processLogoBackground(urpaidLogo);
+        setProcessedLogo(processed);
+      } catch (error) {
+        console.error('Failed to process logo:', error);
+        // Fallback to original logo
+        setProcessedLogo(urpaidLogo);
+      }
+    };
+    processLogo();
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background pb-24 relative overflow-hidden">
-      {/* Decorative glows */}
-      <div className="fixed top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
-      <div className="fixed bottom-0 left-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2" />
-      
+    <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <header className="bg-secondary border-b border-secondary/20 sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-6 py-5 flex justify-between items-center">
-          {/* Menu Icon */}
-          <button className="flex flex-col gap-[3px] w-5 group">
-            <div className="h-[1.5px] w-full bg-white transition-all group-hover:w-full" />
-            <div className="h-[1.5px] w-[70%] bg-white transition-all group-hover:w-full" />
-            <div className="h-[1.5px] w-full bg-white transition-all group-hover:w-full" />
-          </button>
-          
-          {/* Logo */}
-          <div className="w-[42px] h-[42px] bg-primary rounded-xl flex items-center justify-center relative overflow-hidden">
-            <span className="text-secondary text-xl font-black tracking-tight relative z-10">U</span>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+      <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
+        <div className="max-w-lg mx-auto px-6 py-1.5 grid grid-cols-3 items-center gap-2">
+          <div className="flex justify-start">
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 h-9 w-9">
+              <Menu className="w-5 h-5" />
+            </Button>
           </div>
-          
-          {/* Header Icons */}
-          <div className="flex items-center gap-5">
-            {/* Grid Icon (3x3 dots) */}
-            <button className="w-5 h-5 grid grid-cols-3 gap-[2.5px] group">
-              {[...Array(9)].map((_, i) => (
-                <div 
-                  key={i} 
-                  className="w-1 h-1 bg-white/70 transition-all group-hover:bg-primary group-hover:opacity-100" 
-                />
-              ))}
-            </button>
-            
-            {/* Profile Icon */}
-            <button className="w-[30px] h-[30px] border-[1.5px] border-white/30 rounded-lg flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all">
-              <User className="w-4 h-4 text-white/80" />
-            </button>
+          <div className="flex items-center justify-center">
+            {processedLogo ? (
+              <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
+            ) : (
+              <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
+            )}
+          </div>
+          <div className="flex justify-end gap-2">
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 h-9 w-9">
+              <QrCode className="w-5 h-5" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full text-white hover:bg-white/20 h-9 w-9"
+              onClick={() => setShowPasskey(true)}
+            >
+              <User className="w-5 h-5" />
+            </Button>
           </div>
         </div>
       </header>
 
-      <main className="max-w-[560px] mx-auto px-6 py-16">
-        {/* Title */}
-        <h1 className="text-4xl sm:text-[2.25rem] font-light text-center mb-3 tracking-tight">
-          Send or <strong className="font-bold">Receive</strong> dollars
+      <main className="max-w-lg mx-auto px-6 py-8">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
+          Send or Receive dollars
         </h1>
-        <p className="text-muted-foreground text-center mb-14 tracking-wide">Without gas</p>
+        <p className="font-bold text-lg mb-8 bg-gradient-primary bg-clip-text text-transparent">Without gas</p>
 
         {/* Search Bar */}
-        <div className="bg-muted border border-border rounded-xl p-4 flex items-center gap-4 mb-14 transition-all hover:bg-card hover:border-border/80 focus-within:bg-card focus-within:border-primary focus-within:shadow-[0_0_0_3px_hsl(var(--primary)/0.1)]">
-          <Search className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
-          <input
-            type="text"
-            placeholder="Name, username, phone number, wallet address, email address"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 bg-transparent border-none outline-none text-[0.925rem] text-foreground placeholder:text-muted-foreground"
-          />
+        <div className="mb-6">
+          <div className="relative flex-1">
+            <Input
+              type="text"
+              placeholder=""
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base py-3"
+            />
+            {!searchQuery && (
+              <div className="absolute left-10 right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight">
+                Name, username, phone number, wallet address, email address
+              </div>
+            )}
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
         </div>
 
-        {/* Quick Actions Section */}
-        <div>
-          <h2 className="text-xs font-semibold text-foreground/70 mb-5 uppercase tracking-widest">
-            Quick Actions
-          </h2>
-          
-          {/* Action Button */}
+        {/* Suggested Section */}
+        <div className="bg-card rounded-3xl shadow-soft border border-border/50 overflow-hidden">
+          <h2 className="text-xl font-semibold p-6 pb-3">Quick Actions</h2>
+
+          {/* Payment Link Option */}
           <button
             onClick={() => navigate("/send-request")}
-            className="w-full flex items-center gap-4 p-5 bg-card border border-border rounded-xl cursor-pointer transition-all hover:border-transparent hover:shadow-glow hover:-translate-y-0.5 group relative overflow-hidden"
+            className="w-full flex items-center justify-between p-5 hover:bg-gradient-primary/5 transition-all group"
           >
-            {/* Hover background effect */}
-            <div className="absolute inset-0 w-0 bg-gradient-primary transition-all duration-300 group-hover:w-full" />
-            
-            {/* Content */}
-            <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center transition-all group-hover:bg-white relative z-10">
-              <DollarSign className="w-7 h-7 text-primary transition-all group-hover:text-secondary" strokeWidth={1.5} />
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft group-hover:scale-105 transition-transform">
+                <DollarSign className="w-7 h-7 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-foreground text-base">Send or request dollars</p>
+              </div>
             </div>
-            <span className="flex-1 text-left text-base font-medium tracking-tight transition-all group-hover:text-secondary relative z-10">
-              Send or request dollars
-            </span>
-            <span className="text-2xl font-extralight text-border transition-all group-hover:text-secondary group-hover:translate-x-1.5 relative z-10">
-              →
-            </span>
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
+
+          {/* Contacts List */}
+          <div className="divide-y divide-border">
+            {contacts.map((contact, index) => (
+              <ContactItem
+                key={index}
+                name={contact.name}
+                fallback={contact.fallback}
+                avatar={contact.avatar}
+              />
+            ))}
+          </div>
         </div>
       </main>
+
+      {/* Passkey Modal */}
+      <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
+        <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
+          <SheetHeader className="mb-4 mt-2">
+            <div className="flex items-center justify-center mb-3">
+              {processedLogo ? (
+                <img src={processedLogo} alt="UrPaid" className="w-36 h-36 object-contain" />
+              ) : (
+                <div className="w-36 h-36 animate-pulse bg-muted/20 rounded" />
+              )}
+            </div>
+            <SheetTitle className="text-3xl font-bold text-center leading-tight">
+              Welcome to financial freedom
+            </SheetTitle>
+          </SheetHeader>
+          
+          <div className="flex flex-col items-center space-y-6 mt-6">
+            {/* Security Icons */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <User className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+              </div>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+              </div>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+              </div>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
+                <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-center text-muted-foreground text-base px-6 mt-4">
+              Create your account and passkey to secure your dollars.
+            </p>
+
+            {/* Link */}
+            <a href="#" className="text-primary font-semibold text-lg mt-2">
+              How passkeys work
+            </a>
+
+            {/* Continue Button */}
+            <div className="fixed bottom-8 left-4 right-4 max-w-lg mx-auto">
+              <Button
+                size="lg"
+                className="w-full rounded-full h-14 text-lg font-semibold shadow-soft"
+                onClick={() => setShowPasskey(false)}
+              >
+                Continue
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
 
       <BottomNav />
     </div>
