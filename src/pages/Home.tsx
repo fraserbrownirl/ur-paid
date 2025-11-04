@@ -44,10 +44,7 @@ const Home = () => {
             </button>
             
             {/* Profile Icon */}
-            <button 
-              onClick={() => navigate("/profile")}
-              className="w-[30px] h-[30px] border-[1.5px] border-white/30 rounded-lg flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all"
-            >
+            <button className="w-[30px] h-[30px] border-[1.5px] border-white/30 rounded-lg flex items-center justify-center hover:border-primary hover:bg-primary/10 transition-all">
               <User className="w-4 h-4 text-white/80" />
             </button>
           </div>
