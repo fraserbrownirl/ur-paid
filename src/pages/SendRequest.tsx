@@ -34,7 +34,7 @@ const SendRequest = () => {
       toast.error("Please enter a valid amount");
       return;
     }
-    setShowPaymentType(true);
+    setShowReview(true);
   };
 
   const handleSend = () => {
