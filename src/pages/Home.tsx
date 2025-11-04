@@ -24,19 +24,20 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center justify-between">
-          <Button variant="ghost" size="icon" className="rounded-full">
+      <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
+        <div className="max-w-lg mx-auto px-6 py-4 flex items-center justify-between">
+          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <Menu className="w-6 h-6" />
           </Button>
+          <h1 className="text-xl font-bold text-white">Spend Share Go</h1>
           <div className="flex gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
               <QrCode className="w-6 h-6" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full"
+              className="rounded-full text-white hover:bg-white/20"
               onClick={() => setShowPasskey(true)}
             >
               <User className="w-6 h-6" />
@@ -45,8 +46,11 @@ const Home = () => {
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold mb-6">Send and Request</h1>
+      <main className="max-w-lg mx-auto px-6 py-8">
+        <h1 className="text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
+          Send Money Anywhere
+        </h1>
+        <p className="text-muted-foreground mb-8">Fast, secure, and accessible for everyone</p>
 
         {/* Search Bar */}
         <div className="mb-6">
@@ -75,25 +79,25 @@ const Home = () => {
         </div>
 
         {/* Suggested Section */}
-        <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
-          <h2 className="text-xl font-semibold p-4 pb-2">Suggested</h2>
+        <div className="bg-card rounded-3xl shadow-soft border border-border/50 overflow-hidden">
+          <h2 className="text-xl font-semibold p-6 pb-3">Quick Actions</h2>
 
           {/* Payment Link Option */}
           <button
             onClick={() => navigate("/send-request")}
-            className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors"
+            className="w-full flex items-center justify-between p-5 hover:bg-gradient-primary/5 transition-all group"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-primary-foreground" />
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft group-hover:scale-105 transition-transform">
+                <DollarSign className="w-7 h-7 text-white" />
               </div>
               <div className="text-left">
-                <p className="font-semibold text-foreground">Send and request money with a link</p>
-                <p className="text-sm text-muted-foreground">Share it via text, email or any app.</p>
+                <p className="font-semibold text-foreground text-base">Send or request money</p>
+                <p className="text-sm text-muted-foreground">Fast transfers across all networks</p>
               </div>
             </div>
-            <svg className="w-5 h-5 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" />
+            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
@@ -117,7 +121,7 @@ const Home = () => {
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
           <SheetHeader className="mb-8">
             <div className="flex items-center justify-center mb-4">
-              <h2 className="text-2xl font-bold">PayPal</h2>
+              <h2 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">Spend Share Go</h2>
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
               Add an extra layer of security in seconds
@@ -127,23 +131,23 @@ const Home = () => {
           <div className="flex flex-col items-center space-y-8">
             {/* Security Icons */}
             <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
                 <div className="grid grid-cols-3 gap-1">
                   {[...Array(9)].map((_, i) => (
                     <div key={i} className="w-2 h-2 rounded-full bg-primary" />
                   ))}
                 </div>
               </div>
-              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
                 <Fingerprint className="w-10 h-10 text-primary" />
               </div>
-              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
                 <ScanFace className="w-10 h-10 text-primary" />
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-0.5 bg-muted-foreground" />
-                <div className="w-20 h-20 rounded-lg bg-primary flex items-center justify-center">
-                  <Shield className="w-12 h-12 text-primary-foreground" />
+                <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
+                  <Shield className="w-12 h-12 text-white" />
                 </div>
               </div>
             </div>
@@ -162,7 +166,7 @@ const Home = () => {
             <div className="fixed bottom-8 left-4 right-4 max-w-lg mx-auto">
               <Button
                 size="lg"
-                className="w-full rounded-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90"
+                className="w-full rounded-full h-14 text-lg font-semibold shadow-soft"
                 onClick={() => setShowPasskey(false)}
               >
                 Continue

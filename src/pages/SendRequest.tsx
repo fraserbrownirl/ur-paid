@@ -90,46 +90,46 @@ const SendRequest = () => {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
+        <div className="max-w-lg mx-auto px-6 py-4 flex items-center justify-between">
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full"
+            className="rounded-full text-white hover:bg-white/20"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="w-6 h-6" />
           </Button>
-          <h1 className="text-lg font-semibold">PayPal link</h1>
-          <Button variant="ghost" size="icon" className="rounded-full">
+          <h1 className="text-xl font-bold text-white">Send or Request</h1>
+          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <HelpCircle className="w-6 h-6" />
           </Button>
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 py-6">
+      <main className="max-w-lg mx-auto px-6 py-8">
         {/* Icon and Title */}
-        <div className="flex items-center gap-4 mb-8">
-          <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center">
-            <DollarSign className="w-8 h-8 text-primary-foreground" />
+        <div className="flex items-center gap-4 mb-10">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-secondary flex items-center justify-center shadow-soft">
+            <DollarSign className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl font-semibold">Add amount</h2>
+          <h2 className="text-3xl font-bold">Enter Amount</h2>
         </div>
 
         {/* Amount Input */}
         <div className="flex items-center gap-4 mb-8">
           <input
             type="text"
-            value={`£${amount}`}
+            value={`$${amount}`}
             readOnly
-            className="text-5xl font-bold bg-transparent border-none outline-none flex-1 cursor-default"
-            placeholder="£"
+            className="text-5xl font-bold bg-transparent border-none outline-none flex-1 cursor-default bg-gradient-primary bg-clip-text text-transparent"
+            placeholder="$"
           />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="rounded-full h-12 px-6 font-semibold"
+                className="rounded-full h-12 px-6 font-semibold border-2"
               >
                 {currency} ▾
               </Button>
@@ -149,43 +149,44 @@ const SendRequest = () => {
         </div>
 
         {/* Note Input */}
-        <div className="mb-8">
+        <div className="mb-10">
           <input
             type="text"
-            placeholder="Add a note"
+            placeholder="Add a note (optional)"
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full p-4 bg-muted/30 rounded-xl border-none outline-none text-muted-foreground placeholder:text-muted-foreground"
+            className="w-full p-4 bg-muted/50 rounded-2xl border border-border outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
           />
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-2 gap-4 mb-10">
           <Button
             onClick={handleRequest}
             size="lg"
-            className="rounded-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90"
+            variant="outline"
+            className="rounded-full h-14 text-lg font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all"
           >
             Request
           </Button>
           <Button
             onClick={handleSend}
             size="lg"
-            className="rounded-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90"
+            className="rounded-full h-14 text-lg font-semibold shadow-soft"
           >
             Send
           </Button>
         </div>
 
         {/* Number Pad */}
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-3">
           {numberPad.map((row, rowIndex) => (
             row.map((btn, btnIndex) => (
               <Button
                 key={`${rowIndex}-${btnIndex}`}
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="h-16 text-2xl font-semibold rounded-xl bg-card hover:bg-muted"
+                className="h-16 text-2xl font-semibold rounded-2xl hover:bg-primary/10 hover:text-primary transition-colors"
                 onClick={() => {
                   if (btn === "←") handleBackspace();
                   else handleNumberInput(btn);
@@ -264,21 +265,19 @@ const SendRequest = () => {
           <div className="space-y-4 mt-6">
             <div className="flex justify-between items-start">
               <p className="text-xl font-bold">Your request</p>
-              <p className="text-xl font-bold">£{amount || "0.00"}</p>
+              <p className="text-xl font-bold text-primary">${amount || "0.00"}</p>
             </div>
             <p className="text-sm text-muted-foreground">
-              If you're requesting money for a purchase, you'll pay a seller fee when pays you. 
-              You could be covered by{" "}
-              <a href="#" className="text-primary font-semibold">Seller Protection</a>. 
-              By selecting Create PayPal Link, you agree to{" "}
-              <a href="#" className="text-primary font-semibold">PayPal link terms</a>.
+              Fast, secure crypto transfers powered by blockchain technology. 
+              By continuing, you agree to our{" "}
+              <a href="#" className="text-primary font-semibold">terms of service</a>.
             </p>
             <Button
               onClick={handleCreateLink}
               size="lg"
-              className="w-full rounded-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90"
+              className="w-full rounded-full h-14 text-lg font-semibold shadow-soft"
             >
-              Create PayPal Link
+              Create Payment Link
             </Button>
           </div>
         </SheetContent>

@@ -47,26 +47,31 @@ const Balances = () => {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <header className="bg-card border-b border-border sticky top-0 z-10">
-        <div className="max-w-lg mx-auto px-4 py-4 flex items-center gap-4">
+      <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
+        <div className="max-w-lg mx-auto px-6 py-4 flex items-center gap-4">
           <Button
             variant="ghost"
             size="icon"
-            className="rounded-full"
+            className="rounded-full text-white hover:bg-white/20"
             onClick={() => navigate("/")}
           >
             <ArrowLeft className="w-6 h-6" />
           </Button>
-          <h1 className="text-lg font-semibold">Balances</h1>
+          <h1 className="text-xl font-bold text-white">Balances</h1>
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 py-6">
-        <div className="rounded-lg border border-border overflow-hidden bg-card">
+      <main className="max-w-lg mx-auto px-6 py-8">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold mb-2">Your Balances</h2>
+          <p className="text-muted-foreground">Track your crypto across all networks</p>
+        </div>
+        
+        <div className="rounded-3xl border border-border/50 overflow-hidden bg-card shadow-soft">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead className="font-semibold">Chain</TableHead>
+              <TableRow className="bg-muted/30">
+                <TableHead className="font-semibold">Network</TableHead>
                 {topTokens.map((token) => (
                   <TableHead key={token} className="text-right font-semibold">
                     {token}
@@ -75,11 +80,11 @@ const Balances = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {chains.map((chain) => (
-                <TableRow key={chain}>
+              {chains.map((chain, idx) => (
+                <TableRow key={chain} className={idx % 2 === 0 ? "bg-muted/10" : ""}>
                   <TableCell className="font-medium">{chain}</TableCell>
                   {topTokens.map((token) => (
-                    <TableCell key={token} className="text-right">
+                    <TableCell key={token} className="text-right font-mono">
                       ${getBalance(chain, token)}
                     </TableCell>
                   ))}
