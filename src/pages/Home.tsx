@@ -40,30 +40,30 @@ const Home = () => {
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
-        <div className="max-w-lg mx-auto px-6 py-2 grid grid-cols-3 items-center gap-2">
+        <div className="max-w-lg mx-auto px-6 py-1.5 grid grid-cols-3 items-center gap-2">
           <div className="flex justify-start">
-            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
-              <Menu className="w-6 h-6" />
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 h-9 w-9">
+              <Menu className="w-5 h-5" />
             </Button>
           </div>
           <div className="flex items-center justify-center">
             {processedLogo ? (
-              <img src={processedLogo} alt="UrPaid" className="h-20 w-auto object-contain" />
+              <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
             ) : (
-              <div className="h-20 w-40 animate-pulse bg-white/20 rounded" />
+              <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
             )}
           </div>
           <div className="flex justify-end gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
-              <QrCode className="w-6 h-6" />
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 h-9 w-9">
+              <QrCode className="w-5 h-5" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="rounded-full text-white hover:bg-white/20"
+              className="rounded-full text-white hover:bg-white/20 h-9 w-9"
               onClick={() => setShowPasskey(true)}
             >
-              <User className="w-6 h-6" />
+              <User className="w-5 h-5" />
             </Button>
           </div>
         </div>
