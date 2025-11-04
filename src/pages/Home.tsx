@@ -116,7 +116,7 @@ const Home = () => {
                 <DollarSign className="w-7 h-7 text-white" />
               </div>
               <div className="text-left">
-                <p className="font-semibold text-foreground text-base">Send or request money</p>
+                <p className="font-semibold text-foreground text-base">Send or request dollars</p>
               </div>
             </div>
             <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
