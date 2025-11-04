@@ -73,7 +73,7 @@ const Home = () => {
         <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
           Send or Receive dollars
         </h1>
-        <p className="text-muted-foreground mb-8">Fast, secure and cheap</p>
+        <p className="font-bold text-lg mb-8 bg-gradient-primary bg-clip-text text-transparent">Without gas</p>
 
         {/* Search Bar */}
         <div className="mb-6">
