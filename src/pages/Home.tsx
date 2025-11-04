@@ -48,10 +48,10 @@ const Home = () => {
       </header>
 
       <main className="max-w-lg mx-auto px-6 py-8">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
-          Send Money Anywhere
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
+          Get paid anywhere from anyone
         </h1>
-        <p className="text-muted-foreground mb-8">Fast, secure, and accessible for everyone</p>
+        <p className="text-muted-foreground mb-8">Fast, secure and cheap</p>
 
         {/* Search Bar */}
         <div className="mb-6">
