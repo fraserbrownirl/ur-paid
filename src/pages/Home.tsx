@@ -84,13 +84,12 @@ const Home = () => {
               className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base py-3"
             />
             {!searchQuery && (
-              <div className="absolute left-10 top-3 sm:top-1/2 sm:-translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight sm:leading-normal">
-                <span className="sm:inline">Name, username, phone number, email address</span>
-                <span className="block sm:hidden">Name, username,<br />phone number, email address</span>
+              <div className="absolute left-10 right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight">
+                Name, username, phone number, email address
               </div>
             )}
             <svg
-              className="absolute left-3 top-5 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 text-muted-foreground"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -120,7 +119,6 @@ const Home = () => {
               </div>
               <div className="text-left">
                 <p className="font-semibold text-foreground text-base">Send or request money</p>
-                <p className="text-sm text-muted-foreground">Fast transfers across all networks</p>
               </div>
             </div>
             <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
