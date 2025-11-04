@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Menu, Grid3x3, User, DollarSign } from "lucide-react";
+import { Menu, QrCode, User, DollarSign, Shield, Fingerprint, ScanFace } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ContactItem } from "@/components/ContactItem";
 import { BottomNav } from "@/components/BottomNav";
 import { useNavigate } from "react-router-dom";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
 const contacts = [
   { name: "Coline Loup", fallback: "CL", avatar: "" },
@@ -17,6 +18,7 @@ const contacts = [
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showPasskey, setShowPasskey] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -29,9 +31,14 @@ const Home = () => {
           </Button>
           <div className="flex gap-2">
             <Button variant="ghost" size="icon" className="rounded-full">
-              <Grid3x3 className="w-6 h-6" />
+              <QrCode className="w-6 h-6" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full"
+              onClick={() => setShowPasskey(true)}
+            >
               <User className="w-6 h-6" />
             </Button>
           </div>
@@ -42,11 +49,11 @@ const Home = () => {
         <h1 className="text-3xl font-bold mb-6">Send and Request</h1>
 
         {/* Search Bar */}
-        <div className="flex gap-2 mb-6">
+        <div className="mb-6">
           <div className="relative flex-1">
             <Input
               type="text"
-              placeholder="Name, username, email address,..."
+              placeholder="Name, username, phone number, email address"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-12 rounded-full bg-card border-border"
@@ -65,11 +72,6 @@ const Home = () => {
               />
             </svg>
           </div>
-          <Button variant="ghost" size="icon" className="rounded-full h-12 w-12">
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-            </svg>
-          </Button>
         </div>
 
         {/* Suggested Section */}
@@ -109,6 +111,66 @@ const Home = () => {
           </div>
         </div>
       </main>
+
+      {/* Passkey Modal */}
+      <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
+        <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
+          <SheetHeader className="mb-8">
+            <div className="flex items-center justify-center mb-4">
+              <h2 className="text-2xl font-bold">PayPal</h2>
+            </div>
+            <SheetTitle className="text-3xl font-bold text-center leading-tight">
+              Add an extra layer of security in seconds
+            </SheetTitle>
+          </SheetHeader>
+          
+          <div className="flex flex-col items-center space-y-8">
+            {/* Security Icons */}
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+                <div className="grid grid-cols-3 gap-1">
+                  {[...Array(9)].map((_, i) => (
+                    <div key={i} className="w-2 h-2 rounded-full bg-primary" />
+                  ))}
+                </div>
+              </div>
+              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+                <Fingerprint className="w-10 h-10 text-primary" />
+              </div>
+              <div className="w-20 h-20 rounded-full bg-blue-400 flex items-center justify-center">
+                <ScanFace className="w-10 h-10 text-primary" />
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-0.5 bg-muted-foreground" />
+                <div className="w-20 h-20 rounded-lg bg-primary flex items-center justify-center">
+                  <Shield className="w-12 h-12 text-primary-foreground" />
+                </div>
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-center text-muted-foreground text-base px-6">
+              A passkey is more resistant to phishing attempts and uses your face, fingerprint or passcode to log in.
+            </p>
+
+            {/* Link */}
+            <a href="#" className="text-primary font-semibold text-lg">
+              How passkeys work
+            </a>
+
+            {/* Continue Button */}
+            <div className="fixed bottom-8 left-4 right-4 max-w-lg mx-auto">
+              <Button
+                size="lg"
+                className="w-full rounded-full h-14 text-lg font-semibold bg-foreground text-background hover:bg-foreground/90"
+                onClick={() => setShowPasskey(false)}
+              >
+                Continue
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
 
       <BottomNav />
     </div>
