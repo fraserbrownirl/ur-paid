@@ -43,6 +43,21 @@ const Balances = () => {
     return balances[`${chain}-${token}`] || "Coming soon";
   };
 
+  // Calculate total
+  const calculateTotal = () => {
+    let total = 0;
+    chains.forEach((chain) => {
+      topTokens.forEach((token) => {
+        const balance = getBalance(chain, token);
+        if (balance !== "Coming soon") {
+          // Remove commas and parse as float
+          total += parseFloat(balance.replace(/,/g, ""));
+        }
+      });
+    });
+    return total.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+
   return (
     <div className="min-h-screen bg-background pb-24">
       <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
@@ -62,6 +77,9 @@ const Balances = () => {
       <main className="max-w-lg mx-auto px-4 sm:px-6 py-4 sm:py-6 overflow-hidden">
         <div className="mb-4">
           <h2 className="text-xl sm:text-2xl font-bold mb-1">Your dollars</h2>
+          <p className="text-lg sm:text-xl font-semibold text-muted-foreground">
+            Total: <span className="font-mono">${calculateTotal()}</span>
+          </p>
         </div>
         
         <div className="rounded-2xl sm:rounded-3xl border border-border/50 overflow-hidden bg-card shadow-soft">
