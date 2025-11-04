@@ -156,20 +156,20 @@ const Home = () => {
           
           <div className="flex flex-col items-center space-y-8">
             {/* Security Icons */}
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <User className="w-10 h-10 text-primary" />
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <User className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
-              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <Mail className="w-10 h-10 text-primary" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <Mail className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
-              <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <Phone className="w-10 h-10 text-primary" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
+                <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-0.5 bg-muted-foreground" />
-                <div className="w-20 h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
-                  <Shield className="w-12 h-12 text-white" />
+                <div className="w-6 h-0.5 bg-muted-foreground" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
+                  <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                 </div>
               </div>
             </div>
