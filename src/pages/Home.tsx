@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, QrCode, User, DollarSign, Shield, Fingerprint, ScanFace } from "lucide-react";
+import urpaidLogo from "@/assets/urpaid-logo.jpeg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ContactItem } from "@/components/ContactItem";
@@ -29,7 +30,7 @@ const Home = () => {
           <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <Menu className="w-6 h-6" />
           </Button>
-          <h1 className="text-xl font-bold text-white">Spend Share Go</h1>
+          <h1 className="text-xl font-bold text-white">UrPaid</h1>
           <div className="flex gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
               <QrCode className="w-6 h-6" />
@@ -120,8 +121,8 @@ const Home = () => {
       <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
           <SheetHeader className="mb-8">
-            <div className="flex items-center justify-center mb-4">
-              <h2 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">Spend Share Go</h2>
+            <div className="flex items-center justify-center mb-6">
+              <img src={urpaidLogo} alt="UrPaid" className="w-24 h-24 object-contain" />
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
               Add an extra layer of security in seconds
