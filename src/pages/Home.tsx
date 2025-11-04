@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, QrCode, User, DollarSign, Shield, Fingerprint, ScanFace } from "lucide-react";
+import { Menu, QrCode, User, DollarSign, Shield, Mail, Phone } from "lucide-react";
 import urpaidLogo from "@/assets/urpaid-logo.jpeg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -125,7 +125,7 @@ const Home = () => {
               <img src={urpaidLogo} alt="UrPaid" className="w-24 h-24 object-contain" />
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
-              Add an extra layer of security in seconds
+              Welcome to financial freedom
             </SheetTitle>
           </SheetHeader>
           
@@ -133,17 +133,13 @@ const Home = () => {
             {/* Security Icons */}
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <div className="grid grid-cols-3 gap-1">
-                  {[...Array(9)].map((_, i) => (
-                    <div key={i} className="w-2 h-2 rounded-full bg-primary" />
-                  ))}
-                </div>
+                <User className="w-10 h-10 text-primary" />
               </div>
               <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <Fingerprint className="w-10 h-10 text-primary" />
+                <Mail className="w-10 h-10 text-primary" />
               </div>
               <div className="w-20 h-20 rounded-full bg-secondary/20 flex items-center justify-center">
-                <ScanFace className="w-10 h-10 text-primary" />
+                <Phone className="w-10 h-10 text-primary" />
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-8 h-0.5 bg-muted-foreground" />
@@ -155,7 +151,7 @@ const Home = () => {
 
             {/* Description */}
             <p className="text-center text-muted-foreground text-base px-6">
-              A passkey is more resistant to phishing attempts and uses your face, fingerprint or passcode to log in.
+              Create your account and passkey to secure your dollars.
             </p>
 
             {/* Link */}
