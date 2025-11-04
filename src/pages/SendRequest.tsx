@@ -52,7 +52,8 @@ const SendRequest = () => {
   };
 
   const handleRequest = () => {
-    if (!amount || parseFloat(amount) <= 0) {
+    console.log('Request clicked - amount:', amount, 'parsed:', parseFloat(amount));
+    if (!amount || parseFloat(amount) <= 0 || isNaN(parseFloat(amount))) {
       toast.error("Please enter a valid amount");
       return;
     }
@@ -60,7 +61,8 @@ const SendRequest = () => {
   };
 
   const handleSend = () => {
-    if (!amount || parseFloat(amount) <= 0) {
+    console.log('Send clicked - amount:', amount, 'parsed:', parseFloat(amount));
+    if (!amount || parseFloat(amount) <= 0 || isNaN(parseFloat(amount))) {
       toast.error("Please enter a valid amount");
       return;
     }
