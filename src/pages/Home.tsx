@@ -47,9 +47,9 @@ const Home = () => {
             <Menu className="w-6 h-6" />
           </Button>
           {processedLogo ? (
-            <img src={processedLogo} alt="UrPaid" className="h-10 w-auto object-contain" />
+            <img src={processedLogo} alt="UrPaid" className="h-12 w-auto object-contain" />
           ) : (
-            <div className="h-10 w-24 animate-pulse bg-white/20 rounded" />
+            <div className="h-12 w-32 animate-pulse bg-white/20 rounded" />
           )}
           <div className="flex gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
@@ -81,10 +81,10 @@ const Home = () => {
               placeholder="Name, username, phone number, email address"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-14 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base"
+              className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base leading-snug py-3"
             />
             <svg
-              className="absolute left-3 top-4 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 text-muted-foreground"
+              className="absolute left-3 top-5 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
