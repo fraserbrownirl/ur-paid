@@ -32,7 +32,6 @@ const SendRequest = () => {
     "World Chain",
     "Unichain",
   ];
-  const [note, setNote] = useState("");
   const [showPaymentType, setShowPaymentType] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [paymentType, setPaymentType] = useState("");
@@ -79,7 +78,6 @@ const SendRequest = () => {
     toast.success("Payment link created successfully!");
     setShowReview(false);
     setAmount("");
-    setNote("");
   };
 
   const numberPad = [
@@ -150,17 +148,6 @@ const SendRequest = () => {
           </DropdownMenu>
         </div>
 
-        {/* Note Input */}
-        <div className="mb-10">
-          <input
-            type="text"
-            placeholder="Add a note (optional)"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            className="w-full p-4 bg-muted/50 rounded-2xl border border-border outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-          />
-        </div>
-
         {/* Action Buttons */}
         <div className="grid grid-cols-2 gap-4 mb-10">
           <Button
@@ -188,25 +175,13 @@ const SendRequest = () => {
                 key={`${rowIndex}-${btnIndex}`}
                 variant="ghost"
                 size="lg"
-                className="h-14 sm:h-16 text-xl sm:text-2xl font-semibold rounded-2xl hover:bg-primary/10 hover:text-primary transition-colors flex flex-col items-center justify-center"
+                className="h-14 sm:h-16 text-xl sm:text-2xl font-semibold rounded-2xl hover:bg-primary/10 hover:text-primary transition-colors"
                 onClick={() => {
                   if (btn === "←") handleBackspace();
                   else handleNumberInput(btn);
                 }}
               >
-                <span>{btn === "←" ? "×" : btn}</span>
-                {btn !== "←" && btn !== "." && btn !== "0" && (
-                  <span className="text-[10px] text-muted-foreground leading-none mt-0.5">
-                    {btn === "2" && "ABC"}
-                    {btn === "3" && "DEF"}
-                    {btn === "4" && "GHI"}
-                    {btn === "5" && "JKL"}
-                    {btn === "6" && "MNO"}
-                    {btn === "7" && "PQRS"}
-                    {btn === "8" && "TUV"}
-                    {btn === "9" && "WXYZ"}
-                  </span>
-                )}
+                {btn === "←" ? "×" : btn}
               </Button>
             ))
           ))}
