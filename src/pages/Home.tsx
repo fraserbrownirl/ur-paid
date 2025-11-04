@@ -45,9 +45,9 @@ const Home = () => {
             <Menu className="w-6 h-6" />
           </Button>
           {processedLogo ? (
-            <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
+            <img src={processedLogo} alt="UrPaid" className="h-24 w-auto object-contain" />
           ) : (
-            <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
+            <div className="h-24 w-48 animate-pulse bg-white/20 rounded" />
           )}
           <div className="flex gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
@@ -144,9 +144,9 @@ const Home = () => {
           <SheetHeader className="mb-8">
             <div className="flex items-center justify-center mb-6">
               {processedLogo ? (
-                <img src={processedLogo} alt="UrPaid" className="w-24 h-24 object-contain" />
+                <img src={processedLogo} alt="UrPaid" className="w-36 h-36 object-contain" />
               ) : (
-                <div className="w-24 h-24 animate-pulse bg-muted/20 rounded" />
+                <div className="w-36 h-36 animate-pulse bg-muted/20 rounded" />
               )}
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
