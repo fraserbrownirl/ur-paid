@@ -107,29 +107,29 @@ const SendRequest = () => {
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-6 py-8">
+      <main className="max-w-lg mx-auto px-4 sm:px-6 py-8 overflow-hidden">
         {/* Icon and Title */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-secondary flex items-center justify-center shadow-soft">
-            <DollarSign className="w-8 h-8 text-white" />
+        <div className="flex items-center gap-3 sm:gap-4 mb-10">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-secondary flex items-center justify-center shadow-soft flex-shrink-0">
+            <DollarSign className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h2 className="text-3xl font-bold">Enter Amount</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">Enter Amount</h2>
         </div>
 
         {/* Amount Input */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-2 sm:gap-4 mb-8 overflow-hidden">
           <input
             type="text"
             value={`$${amount}`}
             readOnly
-            className="text-5xl font-bold bg-transparent border-none outline-none flex-1 cursor-default bg-gradient-primary bg-clip-text text-transparent"
+            className="text-3xl sm:text-5xl font-bold bg-transparent border-none outline-none flex-1 min-w-0 cursor-default bg-gradient-primary bg-clip-text text-transparent"
             placeholder="$"
           />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
-                className="rounded-full h-12 px-6 font-semibold border-2"
+                className="rounded-full h-10 sm:h-12 px-3 sm:px-6 font-semibold border-2 text-sm sm:text-base whitespace-nowrap flex-shrink-0"
               >
                 {currency} ▾
               </Button>
@@ -179,22 +179,22 @@ const SendRequest = () => {
         </div>
 
         {/* Number Pad */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {numberPad.map((row, rowIndex) => (
             row.map((btn, btnIndex) => (
               <Button
                 key={`${rowIndex}-${btnIndex}`}
                 variant="ghost"
                 size="lg"
-                className="h-16 text-2xl font-semibold rounded-2xl hover:bg-primary/10 hover:text-primary transition-colors"
+                className="h-14 sm:h-16 text-xl sm:text-2xl font-semibold rounded-2xl hover:bg-primary/10 hover:text-primary transition-colors flex flex-col items-center justify-center"
                 onClick={() => {
                   if (btn === "←") handleBackspace();
                   else handleNumberInput(btn);
                 }}
               >
-                {btn === "←" ? "×" : btn}
+                <span>{btn === "←" ? "×" : btn}</span>
                 {btn !== "←" && btn !== "." && btn !== "0" && (
-                  <span className="text-xs ml-1 text-muted-foreground">
+                  <span className="text-[10px] text-muted-foreground leading-none mt-0.5">
                     {btn === "2" && "ABC"}
                     {btn === "3" && "DEF"}
                     {btn === "4" && "GHI"}
