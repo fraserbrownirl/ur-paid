@@ -3,13 +3,35 @@ import { ArrowLeft, HelpCircle, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { BottomNav } from "@/components/BottomNav";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const SendRequest = () => {
   const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState("GBP");
+  const [currency, setCurrency] = useState("Ethereum");
+  
+  const chains = [
+    "Ethereum",
+    "Arbitrum",
+    "Base",
+    "Optimism",
+    "Polygon",
+    "BNB Chain",
+    "Avalanche",
+    "ZKsync",
+    "Celo",
+    "Zora Network",
+    "Blast",
+    "World Chain",
+    "Unichain",
+  ];
   const [note, setNote] = useState("");
   const [showPaymentType, setShowPaymentType] = useState(false);
   const [showReview, setShowReview] = useState(false);
@@ -103,12 +125,27 @@ const SendRequest = () => {
             className="text-5xl font-bold bg-transparent border-none outline-none flex-1 cursor-default"
             placeholder="£"
           />
-          <Button
-            variant="outline"
-            className="rounded-full h-12 px-6 font-semibold"
-          >
-            {currency} ▾
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="rounded-full h-12 px-6 font-semibold"
+              >
+                {currency} ▾
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48 bg-card z-50">
+              {chains.map((chain) => (
+                <DropdownMenuItem
+                  key={chain}
+                  onClick={() => setCurrency(chain)}
+                  className="cursor-pointer"
+                >
+                  {chain}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Note Input */}

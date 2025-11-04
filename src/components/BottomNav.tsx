@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: Home, label: "Home", path: "/" },
-  { icon: CreditCard, label: "Accounts", path: "/accounts" },
+  { icon: CreditCard, label: "Balances", path: "/balances" },
   { icon: ArrowUpDown, label: "Send/Request", path: "/send-request" },
   { icon: FileText, label: "Activity", path: "/activity" },
 ];
