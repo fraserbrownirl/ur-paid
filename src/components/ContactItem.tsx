@@ -13,12 +13,12 @@ export const ContactItem = ({ name, username, avatar, fallback, onClick }: Conta
   return (
     <button
       onClick={onClick}
-      className="w-full flex items-center justify-between p-4 hover:bg-muted/50 transition-colors rounded-lg"
+      className="w-full flex items-center justify-between p-4 bg-card border border-border rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all"
     >
       <div className="flex items-center gap-3">
         <Avatar className="w-12 h-12">
           <AvatarImage src={avatar} />
-          <AvatarFallback className="bg-primary text-primary-foreground font-semibold">
+          <AvatarFallback className="bg-secondary text-primary font-bold text-sm">
             {fallback}
           </AvatarFallback>
         </Avatar>
@@ -27,7 +27,7 @@ export const ContactItem = ({ name, username, avatar, fallback, onClick }: Conta
           {username && <p className="text-sm text-muted-foreground">{username}</p>}
         </div>
       </div>
-      <Info className="w-5 h-5 text-muted-foreground" />
+      <span className="text-2xl font-extralight text-border">→</span>
     </button>
   );
 };

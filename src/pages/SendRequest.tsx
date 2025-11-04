@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, HelpCircle, DollarSign } from "lucide-react";
+import { ArrowLeft, HelpCircle, DollarSign, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -10,12 +10,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BottomNav } from "@/components/BottomNav";
+import { ContactItem } from "@/components/ContactItem";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+
+const contacts = [
+  { name: "Coline Loup", fallback: "CL", avatar: "" },
+  { name: "RUDA", fallback: "R", avatar: "" },
+  { name: "Sofia Kolomiets", fallback: "SK", avatar: "" },
+  { name: "Robert Andre", fallback: "RA", avatar: "" },
+  { name: "Emma Wilson", fallback: "EW", avatar: "" },
+  { name: "Michael Chen", fallback: "MC", avatar: "" },
+];
 
 const SendRequest = () => {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("Ethereum");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showContacts, setShowContacts] = useState(true);
   
   const chains = [
     "Ethereum",
@@ -87,27 +99,74 @@ const SendRequest = () => {
     [".", "0", "←"],
   ];
 
+  const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background pb-24 relative overflow-hidden">
+      {/* Decorative glow */}
+      <div className="fixed top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
+      
       {/* Header */}
-      <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
-        <div className="max-w-lg mx-auto px-6 py-4 flex items-center justify-between">
+      <header className="bg-secondary border-b border-secondary/20 sticky top-0 z-10">
+        <div className="max-w-lg mx-auto px-6 py-5 flex items-center justify-between">
           <Button
             variant="ghost"
             size="icon"
             className="rounded-full text-white hover:bg-white/20"
             onClick={() => navigate("/")}
           >
-            <ArrowLeft className="w-6 h-6" />
+            <ArrowLeft className="w-5 h-5" />
           </Button>
-          <h1 className="text-xl font-bold text-white">Send or Request</h1>
-          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
-            <HelpCircle className="w-6 h-6" />
+          <h1 className="text-xl font-semibold text-white">Send or Request</h1>
+          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 invisible">
+            <HelpCircle className="w-5 h-5" />
           </Button>
         </div>
       </header>
 
-      <main className="max-w-lg mx-auto px-4 sm:px-6 py-8 overflow-hidden">
+      <main className="max-w-[560px] mx-auto px-6 py-8 overflow-hidden">
+        {showContacts ? (
+          <>
+            {/* Search Bar */}
+            <div className="mb-6">
+              <div className="bg-muted border border-border rounded-xl p-4 flex items-center gap-4 transition-all hover:bg-card hover:border-border/80 focus-within:bg-card focus-within:border-primary focus-within:shadow-[0_0_0_3px_hsl(var(--primary)/0.1)]">
+                <Search className="w-5 h-5 text-foreground/50" strokeWidth={1.5} />
+                <input
+                  type="text"
+                  placeholder="Search contacts..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="flex-1 bg-transparent border-none outline-none text-[0.925rem] text-foreground placeholder:text-muted-foreground"
+                />
+              </div>
+            </div>
+
+            {/* Contacts List */}
+            <div>
+              <h2 className="text-xs font-semibold text-foreground/70 mb-5 uppercase tracking-widest">
+                Select Recipient
+              </h2>
+              <div className="space-y-2">
+                {filteredContacts.map((contact, index) => (
+                  <div 
+                    key={index}
+                    onClick={() => setShowContacts(false)}
+                    className="cursor-pointer"
+                  >
+                    <ContactItem
+                      name={contact.name}
+                      fallback={contact.fallback}
+                      avatar={contact.avatar}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
         {/* Title */}
         <div className="mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold">Enter Amount</h2>
@@ -183,6 +242,8 @@ const SendRequest = () => {
             ))
           ))}
         </div>
+        </>
+        )}
       </main>
 
       {/* Payment Type Modal */}
