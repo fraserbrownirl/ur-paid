@@ -11,8 +11,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 
 const contacts = [
   { name: "Coline Loup", fallback: "CL", avatar: "" },
-  { name: "Shyriaieva Olena", username: "@vselenskayasila", fallback: "SO", avatar: "" },
-  { name: "Sabrina Fey", username: "@sabrinafey1", fallback: "SF", avatar: "" },
   { name: "RUDA", fallback: "R", avatar: "" },
   { name: "Sofia Kolomiets", fallback: "SK", avatar: "" },
   { name: "Robert Andre", fallback: "RA", avatar: "" },
@@ -132,7 +130,6 @@ const Home = () => {
               <ContactItem
                 key={index}
                 name={contact.name}
-                username={contact.username}
                 fallback={contact.fallback}
                 avatar={contact.avatar}
               />
