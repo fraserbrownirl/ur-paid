@@ -40,11 +40,11 @@ const Home = () => {
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
-        <div className="max-w-lg mx-auto px-6 py-2 flex items-center justify-between relative">
+        <div className="max-w-lg mx-auto px-6 py-3 flex items-center justify-between relative">
           <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <Menu className="w-6 h-6" />
           </Button>
-          <div className="absolute left-1/2 -translate-x-1/2">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             {processedLogo ? (
               <img src={processedLogo} alt="UrPaid" className="h-24 w-auto object-contain" />
             ) : (
