@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowLeft, HelpCircle, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { BottomNav } from "@/components/BottomNav";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -218,12 +219,12 @@ const SendRequest = () => {
       </Dialog>
 
       {/* Review Modal */}
-      <Dialog open={showReview} onOpenChange={setShowReview}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="text-2xl text-center">Review</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
+      <Sheet open={showReview} onOpenChange={setShowReview}>
+        <SheetContent side="bottom" className="rounded-t-3xl">
+          <SheetHeader>
+            <SheetTitle className="text-2xl text-center">Review</SheetTitle>
+          </SheetHeader>
+          <div className="space-y-4 mt-6">
             <div className="flex justify-between items-start">
               <p className="text-xl font-bold">Your request</p>
               <p className="text-xl font-bold">£{amount || "0.00"}</p>
@@ -243,8 +244,8 @@ const SendRequest = () => {
               Create PayPal Link
             </Button>
           </div>
-        </DialogContent>
-      </Dialog>
+        </SheetContent>
+      </Sheet>
 
       <BottomNav />
     </div>
