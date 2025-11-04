@@ -141,8 +141,8 @@ const Home = () => {
       {/* Passkey Modal */}
       <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
-          <SheetHeader className="mb-8">
-            <div className="flex items-center justify-center mb-6">
+          <SheetHeader className="mb-6 mt-4">
+            <div className="flex items-center justify-center mb-4">
               {processedLogo ? (
                 <img src={processedLogo} alt="UrPaid" className="w-36 h-36 object-contain" />
               ) : (
@@ -154,7 +154,7 @@ const Home = () => {
             </SheetTitle>
           </SheetHeader>
           
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-center space-y-6 mt-8">
             {/* Security Icons */}
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
@@ -175,12 +175,12 @@ const Home = () => {
             </div>
 
             {/* Description */}
-            <p className="text-center text-muted-foreground text-base px-6">
+            <p className="text-center text-muted-foreground text-base px-6 mt-4">
               Create your account and passkey to secure your dollars.
             </p>
 
             {/* Link */}
-            <a href="#" className="text-primary font-semibold text-lg">
+            <a href="#" className="text-primary font-semibold text-lg mt-2">
               How passkeys work
             </a>
 
