@@ -20,9 +20,13 @@ const Balances = () => {
     "Base",
     "Optimism",
     "Polygon",
+    "BNB Chain",
+    "Avalanche",
+    "ZKsync",
+    "Celo",
   ];
 
-  const topTokens = ["USDC", "USDT", "PYUSD"];
+  const topTokens = ["USDC", "USDT"];
 
   // Mock balance data
   const getBalance = (chain: string, token: string) => {
