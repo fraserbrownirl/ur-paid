@@ -61,10 +61,10 @@ const Home = () => {
               placeholder="Name, username, phone number, email address"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-12 rounded-full bg-card border-border"
+              className="pl-10 h-14 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base"
             />
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"
+              className="absolute left-3 top-4 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 text-muted-foreground"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
