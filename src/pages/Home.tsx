@@ -40,18 +40,20 @@ const Home = () => {
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
       <header className="bg-gradient-primary border-b border-primary/20 sticky top-0 z-10 shadow-soft">
-        <div className="max-w-lg mx-auto px-6 py-4 flex items-center justify-between relative">
-          <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
-            <Menu className="w-6 h-6" />
-          </Button>
+        <div className="max-w-lg mx-auto px-6 py-2 grid grid-cols-3 items-center gap-2">
+          <div className="flex justify-start">
+            <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
+              <Menu className="w-6 h-6" />
+            </Button>
+          </div>
           <div className="flex items-center justify-center">
             {processedLogo ? (
-              <img src={processedLogo} alt="UrPaid" className="h-20 w-auto object-contain" />
+              <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
             ) : (
-              <div className="h-20 w-40 animate-pulse bg-white/20 rounded" />
+              <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
             )}
           </div>
-          <div className="flex gap-2">
+          <div className="flex justify-end gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
               <QrCode className="w-6 h-6" />
             </Button>
