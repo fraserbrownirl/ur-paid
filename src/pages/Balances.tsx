@@ -61,8 +61,7 @@ const Balances = () => {
 
       <main className="max-w-lg mx-auto px-4 sm:px-6 py-4 sm:py-6 overflow-hidden">
         <div className="mb-4">
-          <h2 className="text-xl sm:text-2xl font-bold mb-1">Your Balances</h2>
-          <p className="text-sm text-muted-foreground">Track your crypto across all networks</p>
+          <h2 className="text-xl sm:text-2xl font-bold mb-1">Your dollars</h2>
         </div>
         
         <div className="rounded-2xl sm:rounded-3xl border border-border/50 overflow-hidden bg-card shadow-soft">
