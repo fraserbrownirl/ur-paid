@@ -142,7 +142,11 @@ const Home = () => {
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
           <SheetHeader className="mb-8">
             <div className="flex items-center justify-center mb-6">
-              <img src={urpaidLogo} alt="UrPaid" className="w-24 h-24 object-contain" />
+              {processedLogo ? (
+                <img src={processedLogo} alt="UrPaid" className="w-24 h-24 object-contain" />
+              ) : (
+                <div className="w-24 h-24 animate-pulse bg-muted/20 rounded" />
+              )}
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
               Welcome to financial freedom
