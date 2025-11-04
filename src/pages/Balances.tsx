@@ -33,13 +33,14 @@ const Balances = () => {
     const balances: { [key: string]: string } = {
       "Ethereum-USDC": "1,234.56",
       "Ethereum-USDT": "987.65",
-      "Ethereum-PYUSD": "543.21",
-      "Arbitrum-USDC": "2,345.67",
       "Base-USDC": "1,567.89",
-      "Optimism-USDT": "678.90",
-      "Polygon-USDC": "456.78",
+      "Base-USDT": "843.21",
+      "BNB Chain-USDC": "2,456.78",
+      "BNB Chain-USDT": "1,098.45",
     };
-    return balances[`${chain}-${token}`] || "0.00";
+    
+    // Return balance if exists, otherwise "Coming soon"
+    return balances[`${chain}-${token}`] || "Coming soon";
   };
 
   return (
@@ -80,11 +81,20 @@ const Balances = () => {
               {chains.map((chain, idx) => (
                 <TableRow key={chain} className={idx % 2 === 0 ? "bg-muted/10" : ""}>
                   <TableCell className="font-medium text-xs sm:text-sm py-2 sm:py-3">{chain}</TableCell>
-                  {topTokens.map((token) => (
-                    <TableCell key={token} className="text-right font-mono text-xs sm:text-sm py-2 sm:py-3">
-                      ${getBalance(chain, token)}
-                    </TableCell>
-                  ))}
+                  {topTokens.map((token) => {
+                    const balance = getBalance(chain, token);
+                    const isComingSoon = balance === "Coming soon";
+                    return (
+                      <TableCell 
+                        key={token} 
+                        className={`text-right text-xs sm:text-sm py-2 sm:py-3 ${
+                          isComingSoon ? "text-muted-foreground italic" : "font-mono"
+                        }`}
+                      >
+                        {isComingSoon ? balance : `$${balance}`}
+                      </TableCell>
+                    );
+                  })}
                 </TableRow>
               ))}
             </TableBody>
