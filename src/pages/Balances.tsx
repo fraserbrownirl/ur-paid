@@ -16,11 +16,11 @@ const Balances = () => {
 
   const chains = [
     "Ethereum",
-    "Arbitrum",
     "Base",
+    "BNB Chain",
+    "Arbitrum",
     "Optimism",
     "Polygon",
-    "BNB Chain",
     "Avalanche",
     "ZKsync",
     "Celo",
@@ -69,9 +69,9 @@ const Balances = () => {
           <Table>
             <TableHeader>
               <TableRow className="bg-muted/30">
-                <TableHead className="font-semibold text-xs sm:text-sm py-2 sm:py-3">Network</TableHead>
+                <TableHead className="font-semibold text-xs sm:text-sm py-4 sm:py-5">Network</TableHead>
                 {topTokens.map((token) => (
-                  <TableHead key={token} className="text-right font-semibold text-xs sm:text-sm py-2 sm:py-3">
+                  <TableHead key={token} className="text-right font-semibold text-xs sm:text-sm py-4 sm:py-5">
                     {token}
                   </TableHead>
                 ))}
@@ -80,14 +80,14 @@ const Balances = () => {
             <TableBody>
               {chains.map((chain, idx) => (
                 <TableRow key={chain} className={idx % 2 === 0 ? "bg-muted/10" : ""}>
-                  <TableCell className="font-medium text-xs sm:text-sm py-2 sm:py-3">{chain}</TableCell>
+                  <TableCell className="font-medium text-xs sm:text-sm py-4 sm:py-5">{chain}</TableCell>
                   {topTokens.map((token) => {
                     const balance = getBalance(chain, token);
                     const isComingSoon = balance === "Coming soon";
                     return (
                       <TableCell 
                         key={token} 
-                        className={`text-right text-xs sm:text-sm py-2 sm:py-3 ${
+                        className={`text-right text-xs sm:text-sm py-4 sm:py-5 ${
                           isComingSoon ? "text-muted-foreground italic" : "font-mono"
                         }`}
                       >
