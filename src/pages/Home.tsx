@@ -143,8 +143,8 @@ const Home = () => {
       {/* Passkey Modal */}
       <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
-          <SheetHeader className="mb-6 mt-4">
-            <div className="flex items-center justify-center mb-4">
+          <SheetHeader className="mb-4 mt-2">
+            <div className="flex items-center justify-center mb-3">
               {processedLogo ? (
                 <img src={processedLogo} alt="UrPaid" className="w-36 h-36 object-contain" />
               ) : (
@@ -156,7 +156,7 @@ const Home = () => {
             </SheetTitle>
           </SheetHeader>
           
-          <div className="flex flex-col items-center space-y-6 mt-8">
+          <div className="flex flex-col items-center space-y-6 mt-6">
             {/* Security Icons */}
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 px-4">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
@@ -168,11 +168,8 @@ const Home = () => {
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-secondary/20 flex items-center justify-center">
                 <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-0.5 bg-muted-foreground" />
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
-                  <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                </div>
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft">
+                <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
               </div>
             </div>
 
