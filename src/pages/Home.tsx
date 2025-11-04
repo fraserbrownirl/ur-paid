@@ -78,11 +78,17 @@ const Home = () => {
           <div className="relative flex-1">
             <Input
               type="text"
-              placeholder="Name, username, phone number, email address"
+              placeholder=""
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base leading-snug py-3"
+              className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base py-3"
             />
+            {!searchQuery && (
+              <div className="absolute left-10 top-3 sm:top-1/2 sm:-translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight sm:leading-normal">
+                <span className="sm:inline">Name, username, phone number, email address</span>
+                <span className="block sm:hidden">Name, username,<br />phone number, email address</span>
+              </div>
+            )}
             <svg
               className="absolute left-3 top-5 sm:top-1/2 sm:-translate-y-1/2 w-5 h-5 text-muted-foreground"
               fill="none"
