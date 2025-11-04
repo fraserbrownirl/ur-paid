@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, QrCode, User, DollarSign, Shield, Mail, Phone } from "lucide-react";
 import urpaidLogo from "@/assets/urpaid-logo.jpeg";
+import { processLogoBackground } from "@/utils/processLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ContactItem } from "@/components/ContactItem";
@@ -20,7 +21,22 @@ const contacts = [
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showPasskey, setShowPasskey] = useState(false);
+  const [processedLogo, setProcessedLogo] = useState<string>("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const processLogo = async () => {
+      try {
+        const processed = await processLogoBackground(urpaidLogo);
+        setProcessedLogo(processed);
+      } catch (error) {
+        console.error('Failed to process logo:', error);
+        // Fallback to original logo
+        setProcessedLogo(urpaidLogo);
+      }
+    };
+    processLogo();
+  }, []);
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -30,7 +46,11 @@ const Home = () => {
           <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
             <Menu className="w-6 h-6" />
           </Button>
-          <h1 className="text-xl font-bold text-white">UrPaid</h1>
+          {processedLogo ? (
+            <img src={processedLogo} alt="UrPaid" className="h-10 w-auto object-contain" />
+          ) : (
+            <div className="h-10 w-24 animate-pulse bg-white/20 rounded" />
+          )}
           <div className="flex gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20">
               <QrCode className="w-6 h-6" />
