@@ -85,7 +85,7 @@ const Home = () => {
             />
             {!searchQuery && (
               <div className="absolute left-10 right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight">
-                Name, username, phone number, email address
+                Name, username, phone number, wallet address, email address
               </div>
             )}
             <svg
