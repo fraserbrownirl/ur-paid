@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, QrCode, User, DollarSign, Shield, Mail, Phone } from "lucide-react";
-import urpaidLogo from "@/assets/urpaid-logo.jpeg";
-import { processLogoBackground } from "@/utils/processLogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ContactItem } from "@/components/ContactItem";
@@ -19,22 +17,7 @@ const contacts = [
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showPasskey, setShowPasskey] = useState(false);
-  const [processedLogo, setProcessedLogo] = useState<string>("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const processLogo = async () => {
-      try {
-        const processed = await processLogoBackground(urpaidLogo);
-        setProcessedLogo(processed);
-      } catch (error) {
-        console.error('Failed to process logo:', error);
-        // Fallback to original logo
-        setProcessedLogo(urpaidLogo);
-      }
-    };
-    processLogo();
-  }, []);
 
   return (
     <div className="min-h-screen bg-background pb-24">
@@ -47,11 +30,7 @@ const Home = () => {
             </Button>
           </div>
           <div className="flex items-center justify-center">
-            {processedLogo ? (
-              <img src={processedLogo} alt="UrPaid" className="h-16 w-auto object-contain" />
-            ) : (
-              <div className="h-16 w-32 animate-pulse bg-white/20 rounded" />
-            )}
+            <h1 className="text-2xl font-bold text-white tracking-tight">UR.PAID</h1>
           </div>
           <div className="flex justify-end gap-2">
             <Button variant="ghost" size="icon" className="rounded-full text-white hover:bg-white/20 h-9 w-9">
@@ -146,12 +125,8 @@ const Home = () => {
       <Sheet open={showPasskey} onOpenChange={setShowPasskey}>
         <SheetContent side="bottom" className="rounded-t-3xl h-[90vh]">
           <SheetHeader className="mb-4 mt-2">
-            <div className="flex items-center justify-center mb-3">
-              {processedLogo ? (
-                <img src={processedLogo} alt="UrPaid" className="w-36 h-36 object-contain" />
-              ) : (
-                <div className="w-36 h-36 animate-pulse bg-muted/20 rounded" />
-              )}
+            <div className="flex items-center justify-center mb-6">
+              <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">UR.PAID</h1>
             </div>
             <SheetTitle className="text-3xl font-bold text-center leading-tight">
               Welcome to financial freedom
