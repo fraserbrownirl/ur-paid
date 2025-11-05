@@ -52,7 +52,11 @@ const Home = () => {
         <h1 className="text-3xl sm:text-4xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
           Send or Receive dollars
         </h1>
-        <p className="font-bold text-lg mb-8 bg-gradient-primary bg-clip-text text-transparent">Without gas</p>
+        <div className="inline-block mb-8">
+          <span className="px-4 py-2 rounded-full bg-primary/10 border border-primary/30 text-primary font-bold text-base">
+            ⚡ Without gas
+          </span>
+        </div>
 
         {/* Search Bar */}
         <div className="mb-6">
