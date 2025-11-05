@@ -67,7 +67,7 @@ const Home = () => {
               className="pl-10 h-16 sm:h-12 rounded-full bg-card border-border text-sm sm:text-base py-3"
             />
             {!searchQuery && (
-              <div className="absolute left-10 right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-sm sm:text-base leading-tight">
+              <div className="absolute left-10 right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground text-xs leading-tight">
                 Name, username, phone number, wallet address, email address
               </div>
             )}
